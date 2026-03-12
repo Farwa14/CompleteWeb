@@ -1,0 +1,144 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Organic Tech Palette */
+    --background: 47 30% 93%;       /* Cream #F2F0E9 */
+    --foreground: 0 0% 10%;          /* Charcoal #1A1A1A */
+
+    --card: 47 30% 93%;
+    --card-foreground: 0 0% 10%;
+
+    --popover: 47 30% 93%;
+    --popover-foreground: 0 0% 10%;
+
+    --primary: 147 16% 22%;          /* Moss #2E4036 */
+    --primary-foreground: 47 30% 93%;
+
+    --secondary: 147 12% 30%;
+    --secondary-foreground: 47 30% 93%;
+
+    --muted: 40 15% 88%;
+    --muted-foreground: 0 0% 40%;
+
+    --accent: 165 62% 26%;            /* Green #1A6B5A */
+    --accent-foreground: 0 0% 100%;
+
+    --orange: 10 78% 60%;              /* Orange #E8604C */
+    --orange-foreground: 0 0% 100%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 40 15% 82%;
+    --input: 40 15% 82%;
+    --ring: 147 16% 22%;
+
+    --radius: 2rem;
+
+    --dark: 0 0% 10%;               /* Charcoal */
+    --dark-foreground: 47 30% 93%;
+
+    /* Font families */
+    --font-heading: 'Plus Jakarta Sans', 'Outfit', sans-serif;
+    --font-body: 'Outfit', 'Plus Jakarta Sans', sans-serif;
+    --font-drama: 'Cormorant Garamond', serif;
+    --font-mono: 'IBM Plex Mono', monospace;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-body);
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+  }
+}
+
+/* Noise overlay */
+.noise-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.05;
+}
+
+/* Magnetic button */
+.btn-magnetic {
+  @apply relative overflow-hidden;
+  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.btn-magnetic:hover {
+  transform: scale(1.03);
+}
+.btn-magnetic .btn-bg {
+  @apply absolute inset-0;
+  transform: translateY(100%);
+  transition: transform 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.btn-magnetic:hover .btn-bg {
+  transform: translateY(0);
+}
+
+/* Interactive lift */
+.hover-lift {
+  transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.hover-lift:hover {
+  transform: translateY(-1px);
+}
+
+/* Font utilities */
+.font-heading {
+  font-family: var(--font-heading);
+}
+.font-drama {
+  font-family: var(--font-drama);
+}
+.font-mono {
+  font-family: var(--font-mono);
+}
+.font-body {
+  font-family: var(--font-body);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: hsl(var(--background));
+}
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--primary) / 0.3);
+  border-radius: 3px;
+}
+
+/* Pulsing dot */
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(0.85); }
+}
+.pulse-dot {
+  animation: pulse-dot 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Blinking cursor */
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+.blink {
+  animation: blink 1s step-end infinite;
+}
